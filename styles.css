@@ -1,0 +1,127 @@
+body {
+  width: 300px;
+  min-height: 150px;
+  padding: 12px 5px;
+  font-family: Arial, sans-serif;
+  background-color: #430075;
+}
+
+.link-item {
+  margin-bottom: 10px;
+  border: 1px solid #D0A2F7;
+  padding: 5px;
+  position: relative;
+  border-radius: 8px;
+  background-color: #63009e;
+  box-shadow: 1px 2px 4px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 1px 2px 4px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 2px 4px 0px rgba(0,0,0,0.75);
+  animation: to-top 1s forwards;
+}
+
+@keyframes to-top {
+  0% {
+      transform: translateY(-10%);
+      opacity: 0;
+  }
+
+  100% {
+      transform: translateY(10%);
+      opacity: 1;
+  }
+}
+
+.link-item:hover {
+  background-color: #7a00b8;
+  scale: 1.03;
+}
+
+.link {
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.edit-link {
+  width: 280px;
+  border-radius: 4px;
+  background-color: #9300de;
+  border: 1px solid #F2CC8C;
+}
+.edit-heading {
+  width: 200px;
+  border-radius: 4px;
+  background-color: #9300de;
+  border: 1px solid #F2CC8C;
+}
+
+.heading {
+  font-weight: bold;
+  color: #2D142C;
+  max-width: 210px;
+  overflow: hidden;
+}
+
+.edit,
+.delete,
+.open,
+.check {
+  position: absolute;
+  top: 5px;
+  cursor: pointer;
+  color: #333;
+}
+
+.delete {
+  right: 45px;
+  /* Adjusted position for delete icon */
+}
+
+.delete:hover {
+  color: red;
+}
+
+.open {
+  right: 23px;
+}
+
+.open:hover {
+  color: green;
+}
+
+.edit {
+  right: 0px;
+  z-index: 2;
+}
+
+.edit:hover {
+  color: royalblue;
+}
+
+.check {
+  opacity: 0;
+}
+
+.check:hover {
+  color: greenyellow;
+}
+
+.edit,
+.check {
+  display: none;
+  right: 0px;
+}
+
+.link-item.editing .edit,
+.link-item.editing .delete {
+  display: none;
+}
+
+.link-item.editing .check {
+  display: inline;
+  opacity: 1;
+}
+
+/* Additional styling for the icons */
+i {
+  margin-right: 5px;
+}

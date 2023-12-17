@@ -1,19 +1,18 @@
 /*========== SCROLL BAR ==========*/
 ::-webkit-scrollbar {
-    width: .60rem;
-    background-color: #430075;
-    border-radius: .5rem;
+  width: .60rem;
+  background-color: #430075;
+  border-radius: .5rem;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #63009e;
-    border-radius: .5rem;
+  background-color: #63009e;
+  border-radius: .5rem;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #7a00b8;
+  background-color: #7a00b8;
 }
-
 
 body {
   width: 300px;
@@ -30,21 +29,21 @@ body {
   position: relative;
   border-radius: 8px;
   background-color: #63009e;
-  box-shadow: 1px 2px 4px 0px rgba(0,0,0,0.75);
-  -webkit-box-shadow: 1px 2px 4px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 1px 2px 4px 0px rgba(0,0,0,0.75);
+  box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.75);
   animation: to-top 1s forwards;
 }
 
 @keyframes to-top {
   0% {
-      transform: translateY(-10%);
-      opacity: 0;
+    transform: translateY(-10%);
+    opacity: 0;
   }
 
   100% {
-      transform: translateY(10%);
-      opacity: 1;
+    transform: translateY(10%);
+    opacity: 1;
   }
 }
 
@@ -64,6 +63,7 @@ body {
   background-color: #9300de;
   border: 1px solid #F2CC8C;
 }
+
 .edit-heading {
   width: 200px;
   border-radius: 4px;
@@ -102,7 +102,12 @@ body {
 }
 
 .open:hover {
+  scale: 1.03;
   color: green;
+}
+
+.link-item:hover .open {
+  scale: 1.03;
 }
 
 .edit {
@@ -122,6 +127,19 @@ body {
   color: greenyellow;
 }
 
+.copy {
+  color: #333;
+  right: 65px;
+  top: 5px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.copy:hover {
+  color: #4800ff;
+  /* font-weight: bolder; */
+}
+
 .edit,
 .check {
   display: none;
@@ -129,7 +147,10 @@ body {
 }
 
 .link-item.editing .edit,
-.link-item.editing .delete {
+.link-item.editing .delete
+
+/* .link-item.editing .copy */
+  {
   display: none;
 }
 

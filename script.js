@@ -26,7 +26,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Create an open icon for the new link container with 90deg rotation
         const openIcon = createIcon('fa-solid fa-circle-plus open', 'open', 180);
+        const copyIcon = createIcon('fa-regular fa-copy copy delayed', 'copy');
         linkContainer.appendChild(openIcon);
+        linkContainer.appendChild(copyIcon);
 
         // Add event listener to the open icon
         openIcon.addEventListener('click', function () {
@@ -34,9 +36,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const newLinkContainer = createLinkContainer({ heading: 'Title here', url: 'https://bibek10550.github.io/bibek/' });
             // Add the new link container at the beginning of the main container
             mainContainer.insertBefore(newLinkContainer, mainContainer.firstChild);
-
             // Save the updated links to local storage
             saveLinksToLocalStorage();
+        });
+
+        // Add event listener to the copy icon
+        copyIcon.addEventListener('click', function () {
+            copyToClipboard(link.url);
         });
 
         return linkContainer;
@@ -68,11 +74,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const deleteIcon = createIcon('fa-solid fa-trash', 'delete');
         const openIcon = createIcon('fa-solid fa-circle-plus open', 'open', 180);
         const checkIcon = createIcon('fa-solid fa-check check', 'check');
+        const copyIcon = createIcon('fa-regular fa-copy copy delayed', 'copy');
 
         linkItem.appendChild(editIcon);
         linkItem.appendChild(deleteIcon);
         linkItem.appendChild(openIcon);
         linkItem.appendChild(checkIcon);
+        linkItem.appendChild(copyIcon);
 
         // Add event listener to the open icon
         openIcon.addEventListener('click', function () {
@@ -80,7 +88,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const newLinkContainer = createLinkContainer({ heading: 'Title here', url: 'https://bibek10550.github.io/bibek/' });
             // Add the new link container at the beginning of the main container
             mainContainer.insertBefore(newLinkContainer, mainContainer.firstChild);
-
             // Save the updated links to local storage
             saveLinksToLocalStorage();
         });
@@ -90,7 +97,6 @@ document.addEventListener('DOMContentLoaded', function () {
             // Remove the link item's parent container (links-container)
             const linksContainer = linkItem.parentElement;
             linksContainer.remove();
-
             // Save the updated links to local storage
             saveLinksToLocalStorage();
         });
@@ -100,11 +106,9 @@ document.addEventListener('DOMContentLoaded', function () {
             // Hide the edit icon and show the check icon
             editIcon.style.display = 'none';
             checkIcon.style.display = 'inline';
-
             // Replace the heading and link with input fields for editing
             headingElement.innerHTML = `<input type="text" class="edit-heading" value="${link.heading}">`;
             linkElement.innerHTML = `<input type="text" class="edit-link" value="${link.url}">`;
-
             // Add a class to indicate that editing is in progress
             linkItem.classList.add('editing');
         });
@@ -114,28 +118,37 @@ document.addEventListener('DOMContentLoaded', function () {
             // Update the link with the edited values
             const editedHeading = linkItem.querySelector('.edit-heading').value;
             const editedLink = linkItem.querySelector('.edit-link').value;
-
             // Save the edited values to the link object
             link.heading = editedHeading;
             link.url = editedLink;
-
             // Update the displayed values
             headingElement.innerText = editedHeading;
             linkElement.innerText = editedLink;
-
             // Show the edit icon and hide the check icon
             editIcon.style.display = 'inline';
             checkIcon.style.display = 'none';
-
             // Remove the editing class
             linkItem.classList.remove('editing');
-
             // Save the updated links to local storage
             saveLinksToLocalStorage();
-
             // Move the link container to the top
             const linksContainer = linkItem.parentElement;
             mainContainer.insertBefore(linksContainer, mainContainer.firstChild);
+
+        });
+
+        // Add event listener to the copy icon
+        copyIcon.addEventListener('click', function () {
+            // Set the font-weight to bolder
+            copyIcon.style.fontWeight = 'bolder';
+
+            // Copy to clipboard
+            copyToClipboard(link.url);
+
+            // Set a timeout to revert the font-weight back to normal after 3 seconds
+            setTimeout(function () {
+                copyIcon.style.fontWeight = 'normal';
+            }, 3000);
         });
 
         return linkItem;
@@ -169,6 +182,16 @@ document.addEventListener('DOMContentLoaded', function () {
         links.sort((a, b) => b.timestamp - a.timestamp);
 
         localStorage.setItem('links', JSON.stringify(links));
+    }
+
+    // to copy the text
+    function copyToClipboard(text) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
     }
 
 });

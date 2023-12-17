@@ -106,11 +106,52 @@ document.addEventListener('DOMContentLoaded', function () {
             // Hide the edit icon and show the check icon
             editIcon.style.display = 'none';
             checkIcon.style.display = 'inline';
-            // Replace the heading and link with input fields for editing
-            headingElement.innerHTML = `<input type="text" class="edit-heading" value="${link.heading}">`;
-            linkElement.innerHTML = `<input type="text" class="edit-link" value="${link.url}">`;
+
+            // Create heading input element
+            const headingInput = document.createElement('input');
+            headingInput.type = 'text';
+            headingInput.classList.add('edit-heading');
+            headingInput.value = link.heading;
+            headingElement.innerHTML = '';
+            headingElement.appendChild(headingInput);
+
             // Add a class to indicate that editing is in progress
             linkItem.classList.add('editing');
+
+            // Focus on the heading input field and select the text
+            headingInput.focus();
+            headingInput.select();
+
+            // Add keydown event listener for the heading input
+            headingInput.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    // Prevent the default behavior of the Enter key (e.g., form submission)
+                    event.preventDefault();
+
+                    // Move the focus to the link input
+                    linkInput.focus();
+                    linkInput.select(); // Select the text in the link input field
+                }
+            });
+
+            // Create link input element
+            const linkInput = document.createElement('input');
+            linkInput.type = 'text';
+            linkInput.classList.add('edit-link');
+            linkInput.value = link.url;
+            linkElement.innerHTML = '';
+            linkElement.appendChild(linkInput);
+
+            // Add keydown event listener for the link input
+            linkInput.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    // Prevent the default behavior of the Enter key (e.g., form submission)
+                    event.preventDefault();
+
+                    // Trigger click on the check icon
+                    checkIcon.click();
+                }
+            });
         });
 
         // Add event listener to the check icon

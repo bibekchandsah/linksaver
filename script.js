@@ -235,4 +235,20 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.removeChild(textArea);
     }
 
+    // swipe gesture for edit and copy
+    const leftElement = document.querySelector('.linkItem');
+    // Initialize Hammer.js for swipe gestures on the left element
+    const hammerLeft = new Hammer(leftElement);
+    const editIcon = linkItem.querySelector(".edit");
+    const copyIcon = linkItem.querySelector(".copy");
+
+    // Handle swipe left and right gestures only on the left element
+    hammerLeft.on('swipeleft swiperight', function (event) {
+        if (event.type === 'swiperight') {
+            copyIcon.click();
+        } else if (event.type === 'swipeleft') {
+            editIcon.click();
+        }
+    });
+
 });

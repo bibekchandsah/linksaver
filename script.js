@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Sample link data
-    const sampleLink = { heading: 'Title here', url: 'https://bibek10550.github.io/bibek/' };
+    const sampleLink = { heading: 'Title here', url: 'https://bibekchandsah.github.io/bibek/' };
 
     // Display the initial link container
     mainContainer.appendChild(createLinkContainer(sampleLink));
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Add event listener to the open icon
         openIcon.addEventListener('click', function () {
             // Create a new link container with functions
-            const newLinkContainer = createLinkContainer({ heading: 'Title here', url: 'https://bibek10550.github.io/bibek/' });
+            const newLinkContainer = createLinkContainer({ heading: 'Title here', url: 'https://bibekchandsah.github.io/bibek/' });
             // Add the new link container at the beginning of the main container
             mainContainer.insertBefore(newLinkContainer, mainContainer.firstChild);
             // Save the updated links to local storage
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Add event listener to the open icon
         openIcon.addEventListener('click', function () {
             // Create a new link container with functions
-            const newLinkContainer = createLinkContainer({ heading: 'Title here', url: 'https://bibek10550.github.io/bibek/' });
+            const newLinkContainer = createLinkContainer({ heading: 'Title here', url: 'https://bibekchandsah.github.io/bibek/' });
             // Add the new link container at the beginning of the main container
             mainContainer.insertBefore(newLinkContainer, mainContainer.firstChild);
             // Save the updated links to local storage
